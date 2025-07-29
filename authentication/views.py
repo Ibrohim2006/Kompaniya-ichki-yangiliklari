@@ -1,6 +1,5 @@
 from datetime import timedelta
 from tokenize import TokenError
-
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
@@ -181,7 +180,7 @@ class LoginViewSet(ViewSet):
 
 
 class LogoutViewSet(ViewSet):
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     @swagger_auto_schema(
         operation_summary="User logout",

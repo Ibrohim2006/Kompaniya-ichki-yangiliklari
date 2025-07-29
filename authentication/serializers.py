@@ -60,7 +60,7 @@ class LoginSerializer(serializers.Serializer):
         if not user:
             raise AuthenticationFailed("Invalid email or password.")
 
-        if not user.is_verified:
+        if not user.is_superuser and not user.is_verified:
             raise AuthenticationFailed("Email is not verified.")
 
         data['user'] = user
