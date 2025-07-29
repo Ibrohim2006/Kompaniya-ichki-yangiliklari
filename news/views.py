@@ -11,7 +11,7 @@ from rest_framework import status
 
 
 class NewsViewSet(ViewSet):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     @swagger_auto_schema(
         operation_summary="Create news (Admin only)",
