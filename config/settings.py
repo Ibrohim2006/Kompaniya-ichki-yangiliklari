@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'news',
     # Installed packages
     'rest_framework',
-    'drf_yasg'
+    'drf_yasg',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +127,32 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL = 'authentication.UserModel'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'description': 'JWT Authorization header using the Bearer scheme. Example: "Bearer {token}"',
+            'name': 'Authorization',
+            'in': 'header',
+        }
+    }
+}
+
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_HOST_USER = 'begmamatovibrohim@gmail.com'
+EMAIL_HOST_PASSWORD = 'your_email_app_password'
+DEFAULT_FROM_EMAIL = 'Your App <begmamatovibrohim@gmail.com>'
