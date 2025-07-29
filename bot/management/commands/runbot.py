@@ -1,12 +1,15 @@
-import asyncio, os
 from django.core.management.base import BaseCommand
-from bot.main import bot
+from bot.main import dp, bot
+import asyncio
 
 
 class Command(BaseCommand):
-    help = "Set Telegram webhook"
+    help = 'Run the Telegram bot'
 
     def handle(self, *args, **options):
-        public_url = os.getenv("WEBHOOK_URL")
-        asyncio.run(bot.set_webhook(public_url))
-        self.stdout.write(self.style.SUCCESS(f"Webhook set to {public_url}"))
+        self.stdout.write(self.style.SUCCESS('Starting bot with polling...'))
+
+        async def main():
+            await dp.start_polling(bot)
+
+        asyncio.run(main())
