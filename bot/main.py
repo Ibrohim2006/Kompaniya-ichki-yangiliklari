@@ -8,6 +8,3 @@ dp = Dispatcher()
 dp.include_router(start.router)
 dp.include_router(news.router)
 dp.include_router(comments.router)
-
-async def run_polling():
-    await dp.start_polling(bot)
