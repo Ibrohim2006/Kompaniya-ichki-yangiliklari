@@ -10,11 +10,16 @@ async def news_handler(message: types.Message):
     news_list = await get_news()
 
     if not news_list:
-        await message.answer("Yangiliklar hozircha yo‘q.")
+        await message.answer("📰 Hozircha yangiliklar mavjud emas.")
         return
 
-    for news in news_list:
+    for idx, news in enumerate(news_list, start=1):
+        text = (
+            f"📰 <b>{news.title}</b>\n"
+            f"📅 <i>{news.created_at.strftime('%d.%m.%Y')}</i>\n\n"
+            f"{news.content[:200]}..."
+        )
         await message.answer(
-            f"📰 <b>{news.title}</b>\n\n{news.content}",
-            parse_mode="HTML"
+            text,
+            parse_mode="HTML",
         )
